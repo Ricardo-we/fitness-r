@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import 'bootswatch/dist/flatly/bootstrap.min.css';
+import Menu from './views/Menu';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import UserFoodList from './views/UserFoodList';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<BrowserRouter>
+			<Routes>
+				<Route path="/" element={<Menu/>}/>
+				<Route path="/your-food-list" element={<UserFoodList/>}/>
+			</Routes>
+		</BrowserRouter>
+	);
+}
+
+export const APIDATA = {
+	url: 'https://food-calorie-data-search.p.rapidapi.com/api/search',
+	headers: {
+		'x-rapidapi-host': 'food-calorie-data-search.p.rapidapi.com',
+		'x-rapidapi-key': '8451e3cf1amshd9af612ba61ed07p12e969jsn0c7d221ebe7e'
+	}
 }
 
 export default App;
