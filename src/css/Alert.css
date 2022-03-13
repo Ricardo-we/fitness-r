@@ -1,8 +1,18 @@
 .alert-container {
     position: fixed;
-    top: 20px;
+    width: 180px;
+    border: 1px solid white;
+    height: 60px;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 50px;
+    z-index: 1000;
+    color: white;
     right: 20px;
-    animation: linear appearAnimation;
+    animation: linear appearAnimation 500ms;
 }
 
 @keyframes appearAnimation {

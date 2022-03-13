@@ -29,7 +29,7 @@ function UserFoodListTable({ foodList, onDeleteAction }) {
                 </thead>
                 <tbody className="text-center">
                     {foodList.map( (food, index) =>(
-                        <tr>
+                        <tr key={food.id * Math.random() * 1000}>
                             <td style={{maxWidth: 120, wordBreak: 'break-word'}}>
                                 {rewriteCorrectly(food.shrt_desc)}
                             </td>

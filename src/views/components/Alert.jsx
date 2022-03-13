@@ -1,16 +1,16 @@
 import { createPortal } from "react-dom";
 import '../../css/Alert.css';
 
-function Alert({ visible, children }) {
+function Alert({ visible, variant='success', children }) {
     if(visible){
-        createPortal(
-            <div className="alert-container">
+        return createPortal(
+            <div className={"alert-container bg-" + variant}>
                 {children}
             </div>
         , document.getElementById('alert-container'))
     
     }
-    else return null
+    return null
 }
 
 export default Alert;

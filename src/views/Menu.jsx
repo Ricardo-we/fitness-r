@@ -8,15 +8,17 @@ function Menu(){
     const [alertVisible, setAlertVisible] = useState(false);
     const handleAlert = () => {
         setAlertVisible(true)
-        setTimeout(() => setAlertVisible(false), 600);
+        setTimeout(() => setAlertVisible(false), 700);
     }
     return (
         <>
             <NavBar handleResults={searchResult => setSearchedItems(searchResult)}/>
             <Alert visible={alertVisible}>
-                <h2>Hello world</h2>
+                <h6>
+                    Item added
+                </h6>
             </Alert>
-            {searchedItems.map(item => <FoodItem food={item} key={item.id} onAddFunc={handleAlert}/>)}
+            {searchedItems.map(item => <FoodItem food={item} key={item.id || 0} onAddFunc={handleAlert}/>)}
         </>
     );
 }
