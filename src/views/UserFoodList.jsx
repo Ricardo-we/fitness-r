@@ -1,5 +1,5 @@
 import { useState } from "react";
-import getFoodList, { deleteFood } from "../libs/manage-food-list";
+import getFoodList from "../libs/manage-food-list";
 import NavBar from "./components/NavBar";
 import FoodItem from "./components/FoodItem";
 import UserFoodListTable from "./components/UserFoodListTable";

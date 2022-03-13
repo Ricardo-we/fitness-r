@@ -1,0 +1,15 @@
+.alert-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    animation: linear appearAnimation;
+}
+
+@keyframes appearAnimation {
+    from {
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}

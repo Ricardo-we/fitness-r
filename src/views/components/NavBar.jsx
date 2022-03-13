@@ -4,14 +4,18 @@ import searchFood from "../../api-requests/searchs";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import translate from 'translate';
 
 function NavBar({ handleResults }) {
     const [search, setSearch] = useState('');
+    const clientLang = localStorage.getItem('lang') || 'es';
 
     const handleSearch = async (e) => {
         e.preventDefault();
         handleResults([{loading: 'Loading...'}])
-        const response = await searchFood(search);
+        const translatedSearch = await translate(search, {from:clientLang, to:'en', engine:'google'})
+        const response = await searchFood(translatedSearch);
+        console.log(translatedSearch)
         handleResults(response)
     }
 
