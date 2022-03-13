@@ -36,7 +36,7 @@
 
 @media screen and (max-width: 423px) {
     .details-container-open {
-        height: 700px;
+        height: 750px;
         /* overflow-y: scroll; */
     }
 }
