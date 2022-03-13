@@ -17,7 +17,7 @@
     height: 0px;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: flex-start;
     flex-wrap: wrap;
     text-overflow: ellipsis;
@@ -25,19 +25,19 @@
 }
 
 .details-container-open {
-    height: 300px;
+    height: 350px;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 778px) {
     .details-container-open {
         height: 500px;
     }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 423px) {
     .details-container-open {
-        height: 500px;
-        overflow-y: scroll;
+        height: 700px;
+        /* overflow-y: scroll; */
     }
 }
 

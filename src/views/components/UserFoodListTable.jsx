@@ -10,7 +10,7 @@ function UserFoodListTable({ foodList, onDeleteAction }) {
         fat: 0,
         carbs: 0
     }
-    
+
     foodList.forEach(food => {
         totalCalories += food.energ_kcal
         totalMacros.protein += food.protein
@@ -19,37 +19,31 @@ function UserFoodListTable({ foodList, onDeleteAction }) {
     });
 
     return ( 
-        <div className="table-responsive-md">
-            <table className="table">
-                <thead>
-                    <th>
-                        Food name
-                    </th>
-                    <th>
-                        Calories
-                    </th>
-                    <th>
-                        Macros
-                    </th>
-                    <th>
-                        Remove
-                    </th>
+        <div className="container-xxl">
+            <table className="table table-hover table-bordered">
+                <thead className="text-center">
+                    <th>Item</th>
+                    <th>Calories</th>
+                    <th>Macros</th>
+                    <th>Remove</th>
                 </thead>
-                <tbody>
+                <tbody className="text-center">
                     {foodList.map( (food, index) =>(
                         <tr>
-                            <td style={{maxWidth: 120}}>{rewriteCorrectly(food.shrt_desc)}</td>
+                            <td style={{maxWidth: 120, wordBreak: 'break-word'}}>
+                                {rewriteCorrectly(food.shrt_desc)}
+                            </td>
                             <td>{food.energ_kcal}</td>
                             <td>
-                                protein: {food.protein}, 
+                                protein: {food.protein}g
                                 <br />
-                                carbs: {food.carbohydrt}, 
+                                carbs: {food.carbohydrt}g 
                                 <br />
-                                fat: {food.lipid_tot}, 
+                                fat: {food.lipid_tot}g
                             </td>
-                            <td>
+                            <td >
                                 <button 
-                                    className="btn btn-outline-danger"
+                                    className="btn btn-outline-danger ms-2"
                                     onClick={() => {
                                         deleteFood(index)
                                         onDeleteAction()
@@ -62,7 +56,8 @@ function UserFoodListTable({ foodList, onDeleteAction }) {
                     ))}
                 </tbody>
             </table>
-            <div className="container">
+            
+            <div className="container-xxl">
                 <h3><strong>Total calories: {Math.floor(totalCalories)}</strong></h3>
                 <ul>
                     <li>
@@ -76,7 +71,6 @@ function UserFoodListTable({ foodList, onDeleteAction }) {
                     </li>
                 </ul>
             </div>
-
         </div>
     );
 }

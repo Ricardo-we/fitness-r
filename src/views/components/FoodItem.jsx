@@ -40,15 +40,12 @@ function FoodItem({ food, onAddFunc }) {
         : setDetailsVisible(true)
     }
 
-    
-    return ( 
-        <div className="rounded container-xxl border border-primary my-3 p-2 d-flex flex-row justify-content-between flex-wrap">
+    if(foodName){
+        return ( 
+            <div className="rounded container-xxl border border-primary my-3 p-2 d-flex flex-row justify-content-between flex-wrap">
+            {/* FOOD MAIN DATA, CALORIES, NAME */}
             <div>
-                {
-                    food.loading? 
-                        <FontAwesomeIcon className="fa-spin" style={{fontSize: 30}} icon={faSpinner}/>
-                    : foodName? foodName : 'Search something'
-                }
+                {foodName}
                 <p>
                     Portion size: {food.gmwt_desc1}
                     <br />
@@ -61,41 +58,55 @@ function FoodItem({ food, onAddFunc }) {
             <button 
                 onClick={handleDetailsVisible} 
                 className={detailsVisible? "btn btn-link details-btn details-btn-close" : "btn btn-link details-btn"}
-            >
+                style={{alignSelf: 'center'}}
+                >
                 <FontAwesomeIcon icon={faArrowDown}/>    
             </button>
             
+            {/* FOOD DETAILS SECTION */}
             <div className={detailsVisible? "details-container details-container-open" : 'details-container'}>
-                <div style={{width: '50%', height: '300px', position: 'relative'}}>
-                    <Pie options={pieOptions} data={data}/>
+                    <div style={{width: '50%', height: '300px', position: 'relative'}}>
+                        <Pie options={pieOptions} data={data}/>
+                    </div>
+                    <div className="d-flex flex-wrap  justify-content-evenly">
+                        <ul>
+                            <h4>Macro nutrients</h4>
+                            <li><strong>kcal: {food.energ_kcal}</strong></li>        
+                            <li><strong>protein: {food.protein}g</strong></li>
+                            <li><strong>carbs: {food.carbohydrt}g</strong></li>
+                            <li><strong>fat: {food.lipid_tot}g</strong></li>
+                        </ul>
+                        <ul>
+                            <h4>Micro nutrients</h4>
+                            <li>sugar: {food.sugar_tot}g</li>
+                            <li>sodium: {food.sodium}mg</li>
+                            <li>potassium: {food.potassium}mg</li>
+                            <li>magnesium: {food.magnesium}mg</li>
+                            <li>calcium: {food.calcium}mg</li>
+                            <li>cholestrl: {food.cholestrl}mg</li>
+                        </ul>
+                    </div>
+                    <button title="Add to food list" style={{alignSelf: 'center'}} className="btn btn-outline-primary" onClick={() => {
+                        addFood(food)
+                        onAddFunc()
+                    }}>
+                        <FontAwesomeIcon icon={faPlus}/>
+                    </button>
                 </div>
-                <div className="d-flex flex-wrap  justify-content-evenly">
-                    <ul>
-                        <h4>Macro nutrients</h4>
-                        <li><strong>kcal: {food.energ_kcal}</strong></li>        
-                        <li><strong>protein: {food.protein}g</strong></li>
-                        <li><strong>carbs: {food.carbohydrt}g</strong></li>
-                        <li><strong>fat: {food.lipid_tot}g</strong></li>
-                    </ul>
-                    <ul>
-                        <h4>Micro nutrients</h4>
-                        <li>sugar: {food.sugar_tot}g</li>
-                        <li>sodium: {food.sodium}mg</li>
-                        <li>potassium: {food.potassium}mg</li>
-                        <li>magnesium: {food.magnesium}mg</li>
-                        <li>calcium: {food.calcium}mg</li>
-                        <li>cholestrl: {food.cholestrl}mg</li>
-                    </ul>
-                </div>
-                <button title="Add to food list" className="btn btn-outline-primary mt-5" onClick={() => {
-                    addFood(food)
-                    onAddFunc()
-                }}>
-                    <FontAwesomeIcon icon={faPlus}/>
-                </button>
             </div>
+        );
+    }
+    return (
+        <div className="container">
+            {food.loading?
+                <h1>
+                    <FontAwesomeIcon className="fa-spin" style={{fontSize: 30}} icon={faSpinner}/>
+                </h1>   
+            : <h1> Search some goodies 🍕</h1>
+            }
+            
         </div>
-    );
+    )
 }
 
 export default FoodItem;
